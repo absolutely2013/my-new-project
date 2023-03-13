@@ -18,62 +18,54 @@
 <body>
     <table>
         <tr>
-            <th >Amount</th>
+            <th><label for="Amount">Amount</label></th>
             <th>From Currency</th>
             <th>To Currency</th>
+            <th></th>
         </tr>
         <tr>
-            <td><input type="number" name="amount" id="amount" placeholder="Nhập số tiền"></td>
+            <td><input type="text" id="Amount"></td>
             <td>
-                <select name="before" id="before">
-                    <option value="vietnam1">VietNam</option>
-                    <option value="usd1">USD</option>
-                    <option value="krw1">KRW</option>
+                <select id="From">
+                    <option value="VND">VND</option>
+                    <option value="USD">USD</option>
                 </select>
             </td>
             <td>
-                <select name="after" id="after">
-                    <option value="vietnam2">VietNam</option>
-                    <option value="usd2">USD</option>
-                    <option value="krw2">KRW</option>
+                <select id="To">
+                    <option value="VND">VND</option>
+                    <option  value="USD">USD</option>
                 </select>
             </td>
-            <td><button onclick="cv1()">Convert</button></td>
-        </tr>
+            <td><button onclick="ChangeMoney()">Convert</button></td>
+        </tr>            
     </table>
-    <h2>Result: <span id="rS">...</span></h2>
+    
+    <br>
+    <p id="Result"></p>
+
     <script>
-       function cv1(){
-        let bF = document.getElementById("before").value;
-        let aT = document.getElementById("after").value;
-        let aMount = parseFloat(document.getElementById("amount").value);
-        var index_cv;
-        if ( bF == "vietnam1" && aT == "vietnam2"){
-            index_cv = aMount * 1 + " VND";
-        } else if (bF == "vietnam1" && aT == "usd2") {
-            index_cv = aMount / 23000 +  " $";
-        } else if (bF == "vietnam1" && aT == "krw2"){
-            index_cv = aMount / 18 + " KRW";
-        }
-        if ( bF == "usd1" && aT == "vietnam2"){
-            index_cv = aMount * 23000 + " VND";
-        } else if (bF == "usd1" && aT == "usd2") {
-            index_cv = aMount * 1 + " $";
-        } else if (bF == "usd1" && aT == "krw2"){
-            index_cv = aMount * 1297 + " KRW";
-        }
-        if ( bF == "krw1" && aT == "vietnam2"){
-            index_cv = aMount * 18 + " VND";
-        } else if (bF == "krw1" && aT == "usd2") {
-            index_cv = aMount / 1297 + " $";
-        } else if (bF == "krw1" && aT == "krw2"){
-            index_cv = aMount * 1 + " KRW";
-        }
+       function ChangeMoney() {
+    let Amount = document.getElementById("Amount").value;
+    let FromC = document.getElementById("From").value;
+    let To = document.getElementById("To").value;
+    let Result;
+
+
+    if (FromC == "USD" && To == "VND") {
+        Result = "Result: " + (Amount * 23000) + " Đ";
+    }
+    else if (FromC == "VND"&& To =="USD"){
+        Result = "Result: "+ (Amount / 23000) + " $";
+    }
+    else if (FromC == "VND") {
+        Result = "Result: " + Amount + " Đ"
+    } else {
+        Result = "Result: " + Amount + " $"
+    }
         
-        
-        document.getElementById("rS").innerHTML = index_cv;
-       }
-            
+    document.getElementById("Result").innerHTML = Result;
+}
         
     </script>
 </body>

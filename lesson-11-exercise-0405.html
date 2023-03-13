@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let Money_before = parseInt(prompt("Nhập số tiền vay: (VND)"));
+        let number_month = parseInt(prompt("Nhập tháng vay: "));
+        let interest_rate = parseInt(prompt("Nhập lãi vay hàng tháng: (%)"));
+        interest_rate /=100;
+        let total = Math.pow((1 + interest_rate ),number_month)
+        alert(total);
+        let Money_after = Money_before * total;
+        alert(Money_after);
+        
+        
+    </script>
+</body>
+</html>
